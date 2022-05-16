@@ -2,7 +2,7 @@ import { extend } from '../shared'
 
 let activeEffect
 let shouldTrack
-class ReactiveEffect {
+export class ReactiveEffect {
     deps = []
     active = true // 判断是否已经被 stop 过了
     onStop?: () => void
