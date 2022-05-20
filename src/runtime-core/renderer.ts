@@ -33,10 +33,15 @@ function mountElement(vnode, container) {
         // vnode
         mountChildren(vnode, el)
     }
-
+    let isOn = (str: string) => /^on[A-Z]/.test(str)
     for (const key in props) {
         const val = props[key]
-        el.setAttribute(key, val)
+        if (isOn(key)) {
+            let event = key.slice(2).toLocaleLowerCase()
+            el.addEventListener(event, val)
+        } else {
+            el.setAttribute(key, val)
+        }
     }
 
     container.append(el)
