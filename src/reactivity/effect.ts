@@ -7,7 +7,8 @@ export class ReactiveEffect {
     active = true // 判断是否已经被 stop 过了
     onStop?: () => void
     constructor(public fn, public scheduler?) {
-
+        this._fn = fn
+        this.scheduler = scheduler
     }
     run() {
         if (!this.active) {
